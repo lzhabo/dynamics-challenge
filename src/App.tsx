@@ -105,6 +105,8 @@ function AppInner() {
 }
 
 export default function App() {
+  // Note: DYNAMIC_ENVIRONMENT_ID must be set via VITE_DYNAMIC_ENV_ID environment variable
+  // If not set, the app will not function properly. See README.md for setup instructions.
   return (
     <DynamicContextProvider
       settings={{

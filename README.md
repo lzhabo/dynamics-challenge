@@ -134,7 +134,7 @@ If you're using your own Dynamic Environment ID:
 echo "VITE_DYNAMIC_ENV_ID=your_environment_id_here" > .env
 ```
 
-The application requires `VITE_DYNAMIC_ENV_ID` to be set. If not provided, the app will not function properly. Make sure to set this value in your `.env` file.
+The application requires `VITE_DYNAMIC_ENV_ID` to be set. If not provided, the app will not function properly.
 
 ### 3. Run Locally
 
@@ -280,7 +280,7 @@ export default function App() {
 **What this does:**
 - Wraps the entire app in `DynamicContextProvider` to make wallet state available everywhere
 - Configures Ethereum wallet connectors (MetaMask, WalletConnect, etc.)
-- Uses environment variable for Environment ID with a fallback constant
+- Uses environment variable for Environment ID (must be set via `VITE_DYNAMIC_ENV_ID`)
 - All child components can access wallet state via `useDynamicContext()` hook
 
 ### Core Donation Flow Logic
@@ -417,8 +417,9 @@ export function useBalance(): UseBalanceReturn {
 **Current approach:**
 - Environment ID is read from `VITE_DYNAMIC_ENV_ID` environment variable
 - The constant in `src/constants/index.ts` reads from `import.meta.env.VITE_DYNAMIC_ENV_ID`
-- If not set, the app will not function (empty string fallback)
+- No default value is provided - explicit configuration is required
 - `.env` file is gitignored (already included in `.gitignore`)
+- See code comments in `src/App.tsx` and `src/constants/index.ts` for configuration details
 
 **Production approach:**
 - Always store `VITE_DYNAMIC_ENV_ID` in `.env` file (not committed to git)
