@@ -1,0 +1,6 @@
+/* Global styles - Ant Design handles most styling */
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
