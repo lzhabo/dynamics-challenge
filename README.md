@@ -76,9 +76,10 @@ The application is **fully client-side**—no backend server is required. All bl
 
 ### Development Environment
 
-- **Node.js**: Version 18 or higher
+- **Node.js**: Version 20 or higher (required for Vite 7+)
   - Check your version: `node --version`
   - Download from [nodejs.org](https://nodejs.org/) if needed
+  - Note: GitHub Actions uses Node.js 20
 
 - **Package Manager**: pnpm (required)
   - Install pnpm: `npm install -g pnpm` or `corepack enable` (Node.js 16.13+)
