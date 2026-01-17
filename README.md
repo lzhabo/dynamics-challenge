@@ -80,9 +80,10 @@ The application is **fully client-side**—no backend server is required. All bl
   - Check your version: `node --version`
   - Download from [nodejs.org](https://nodejs.org/) if needed
 
-- **Package Manager**: npm (comes with Node.js) or pnpm
-  - npm: `npm --version`
-  - pnpm: `npm install -g pnpm` (optional, faster alternative)
+- **Package Manager**: pnpm (required)
+  - Install pnpm: `npm install -g pnpm` or `corepack enable` (Node.js 16.13+)
+  - Verify: `pnpm --version`
+  - Note: This project uses pnpm with lockfile v9.0
 
 - **Code Editor**: VS Code, WebStorm, or any editor with TypeScript support
 
@@ -114,8 +115,6 @@ git clone <repository-url>
 cd fb-test-challenge
 
 # Install dependencies
-npm install
-# or
 pnpm install
 ```
 
@@ -139,8 +138,6 @@ The application requires `VITE_DYNAMIC_ENV_ID` to be set. If not provided, the a
 ### 3. Run Locally
 
 ```bash
-npm run dev
-# or
 pnpm dev
 ```
 
@@ -199,16 +196,12 @@ When you first load the application, you should see:
 ### 5. Build for Production
 
 ```bash
-npm run build
-# or
 pnpm build
 ```
 
 This creates an optimized production build in the `dist/` directory. To preview it:
 
 ```bash
-npm run preview
-# or
 pnpm preview
 ```
 
@@ -241,14 +234,18 @@ git push origin main
 ```
 
 The GitHub Actions workflow (`.github/workflows/deploy.yml`) will:
-1. Build the application
-2. Deploy to GitHub Pages
-3. Make it available at: `https://<username>.github.io/<repository-name>/`
+1. Setup pnpm (latest version to support lockfile v9.0)
+2. Install dependencies using `pnpm install`
+3. Build the application using `pnpm build`
+4. Deploy to GitHub Pages
+5. Make it available at: `https://<username>.github.io/<repository-name>/`
 
 **Note**: The first deployment may take a few minutes. Subsequent pushes trigger automatic redeployments.
 
 #### Important Configuration Details
 
+- **Package Manager**: The workflow uses pnpm (latest version) to match local development
+- **Lockfile**: Uses `pnpm-lock.yaml` for dependency resolution
 - **Base Path**: The Vite config automatically adjusts the base path based on the repository name for GitHub Pages
 - **Environment Variables**: Secrets are injected during the build process
 - **Build Output**: The `dist/` directory is deployed as static files
